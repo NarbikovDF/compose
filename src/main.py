@@ -1,5 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy.orm import Session
+from typing import List
 
 from src import crud, models, schemas
 from src.database import SessionLocal, engine
@@ -16,7 +17,7 @@ def get_db(): # pragma: no cover
     finally:
         db.close()
 
-@app.get("/employees/", response_model=list[schemas.Employee])
+@app.get("/employees/", response_model=List[schemas.Employee])
 def get_employees(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
     employees = crud.get_employees(db, skip=skip, limit=limit)
@@ -41,7 +42,7 @@ def create_employee(employee: schemas.EmployeeCreate, db: Session = Depends(get_
 
 
 
-@app.get("/contracts/", response_model=list[schemas.Сontract])
+@app.get("/contracts/", response_model=List[schemas.Сontract])
 def read_contracts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
     contracts = crud.get_contracts(db, skip=skip, limit=limit)
@@ -69,7 +70,7 @@ def create_contract(contract: schemas.СontractCreate, db: Session = Depends(get
 
 
 
-@app.get("/organizations/", response_model=list[schemas.Organization])
+@app.get("/organizations/", response_model=List[schemas.Organization])
 def read_organizations(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
     organizations = crud.get_organizations(db, skip=skip, limit=limit)
@@ -90,7 +91,7 @@ def create_organization_for_contract(contract_id: int, organization: schemas.Org
 
 
 
-@app.get("/shipments/", response_model=list[schemas.Shipment])
+@app.get("/shipments/", response_model=List[schemas.Shipment])
 def read_shipments(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
     shipments = crud.get_shipments(db, skip=skip, limit=limit)
