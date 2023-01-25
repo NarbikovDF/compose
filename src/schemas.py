@@ -1,11 +1,11 @@
 from pydantic import BaseModel
 from datetime import date
-
+from typing import List, Optional
 
 
 class ShipmentBase(BaseModel):
     type_of_equipment: str
-    comment: str | None = None
+    comment: Optional[str] = None
 
 
 class ShipmentCreate(ShipmentBase):
@@ -32,7 +32,7 @@ class OrganizationBase(BaseModel):
     address: str
     telephone: str
     email: str
-    website_address: str | None = None
+    website_address: Optional[str] = None
 
 
 class OrganizationCreate(OrganizationBase):
@@ -67,7 +67,7 @@ class EmployeeCreate(EmployeeBase):
 
 class Employee(EmployeeBase):
     id: int
-    shipments: list[Shipment] = []
+    shipments: List[Shipment] = []
 
 
     class Config:
@@ -90,8 +90,8 @@ class СontractCreate(СontractBase):
 
 class Сontract(СontractBase):
     id: int
-    shipments: list[Shipment] = []
-    organizations: list[Organization] = []
+    shipments: List[Shipment] = []
+    organizations: List[Organization] = []
 
 
 
