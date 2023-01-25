@@ -29,7 +29,7 @@ def upgrade() -> None:
     session.add_all([ivanov, petrov])
     session.flush()
 
-    geology = Сontract(Org_name='Geology', date_contract=datetime(2022-10-10))
+    geology = Сontract(Org_name='Geology', date_contract=datetime(2022, 10, 10, 12, 10))
     lab_Analysis = Сontract(Org_name='Laboratory Analysis Center', date_contract=datetime(2022, 3, 12, 12, 10))
     lidsey = Сontract(Org_name='Lidsey', date_contract=datetime(2022, 2, 12, 10, 10))
     invitlaf = Сontract(Org_name='Invitlaf', date_contract=datetime(2022, 2, 20, 12, 10))
